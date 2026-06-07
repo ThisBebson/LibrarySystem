@@ -1,0 +1,29 @@
+﻿LibrarySystem/
+│
+├── Models/
+│   ├── Book.cs
+│   ├── Person.cs
+│   ├── Client.cs
+│   └── Borrowing.cs
+│
+├── Interfaces/
+│   ├── IBookService.cs
+│   ├── IClientService.cs
+│   └── IBorrowService.cs
+│
+├── Services/
+│   └── LibraryManager.cs
+│
+├── UI/
+│   ├── Menu.cs
+│   └── ConsoleUI.cs
+│
+├── Utils/
+│   └── CsvExporter.cs
+│
+├── Data/
+│   ├── books.csv
+│   ├── clients.csv
+│   └── borrowings.csv
+│
+└── Program.cs
