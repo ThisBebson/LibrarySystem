@@ -53,7 +53,30 @@ public sealed class LibraryManager : IBookService, IClientService, IBorrowServic
         CsvExporter.SaveClients(clients);
     }
 
+    public void RemoveClient(string cardId)
+    {
+        var client = clients.FirstOrDefault(c => c.LibraryCardId == cardId);
+
+        if (client != null)
+        {
+            clients.Remove(client);
+            CsvExporter.SaveClients(clients);
+        }
+    }
+
     public List<Client> GetClients() => clients;
+
+    public string GenerateNextClientId()
+    {
+        int id = 1;
+
+        while (clients.Any(c => c.LibraryCardId == id.ToString("D3")))
+        {
+            id++;
+        }
+
+        return id.ToString("D3");
+    }
 
     public List<Client> SearchClients(string keyword)
     {
@@ -102,6 +125,18 @@ public sealed class LibraryManager : IBookService, IClientService, IBorrowServic
 
         CsvExporter.SaveBooks(books);
         CsvExporter.SaveBorrowings(borrowings);
+    }
+
+    public string GenerateNextBookId()
+    {
+        int id = 1;
+
+        while (books.Any(b => b.Isbn == $"B{id:D3}"))
+        {
+            id++;
+        }
+
+        return $"B{id:D3}";
     }
 
     public List<Borrowing> GetBorrowings() => borrowings;
